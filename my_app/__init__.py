@@ -3,6 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_principal import Principal
 from .helper_mail import MailManager
+from werkzeug.local import LocalProxy
+from flask import current_app
+
+# https://stackoverflow.com/a/31764294
+logger = LocalProxy(lambda: current_app.logger)
 
 db_manager = SQLAlchemy()
 login_manager = LoginManager()

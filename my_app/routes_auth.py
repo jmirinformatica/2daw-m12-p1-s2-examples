@@ -4,7 +4,7 @@ from . import login_manager
 from .models import User
 from .forms import LoginForm
 from .helper_role import notify_identity_changed
-from . import db_manager as db
+from . import db_manager as db, logger
 from werkzeug.security import check_password_hash
 
 # Blueprint
@@ -23,6 +23,7 @@ def login():
         email = form.email.data
         plain_text_password = form.password.data
 
+        logger.debug(f"Usuari {email} intenta autenticar-se")
         user = load_user(email)
         if user and check_password_hash(user.password, plain_text_password):
             # aquí és crea la cookie
@@ -30,7 +31,10 @@ def login():
             # aquí s'actualitzen els rols que té l'usuari
             notify_identity_changed()
 
+            logger.info(f"Usuari {email} s'ha autenticat correctament")
             return redirect(url_for("main_bp.init"))
+        else:
+            logger.warning(f"Usuari {email} no s'ha autenticat correctament")
 
         # si arriba aquí, és que no s'ha autenticat correctament
         return redirect(url_for("auth_bp.login"))
