@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block content %}
+   <h3>Nou item</h3>
+
+   <form action="/items/create" method="POST">
+      {{ form.csrf_token }}
+      <p>{{ form.nom.label }}: {{ form.nom() }}</p>
+      <p>{{ form.unitats.label }}: {{ form.unitats() }}</p>
+      <p>{{ form.store_id.label }}: {{ form.store_id() }}</p>
+      <p>{{ form.submit(value="CREAR") }}</p>
+   </form>
+   <a href="/items/list">&#x3c;&#x3c; Tornar al llistat d'items</a>
+{% endblock %}

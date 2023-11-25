@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+{% block content %}
+    <h3>Item {{ item.id }}</h3>
+    <ul>
+        <li>Nom: {{ item.nom }}</li>
+        <li>Unitats: {{ item.unitats }}</li>
+    </ul>
+    <p>Confirma que vols esborrar aquest item:</p>
+    <form action="/items/delete/{{ item.id }}" method="POST">
+        {{ form.csrf_token }}
+        <p>{{ form.submit(value="ESBORRAR") }}</p>
+    </form>
+    <a href="/items/list">&#x3c;&#x3c; Tornar al llistat d'items</a>
+{% endblock %}

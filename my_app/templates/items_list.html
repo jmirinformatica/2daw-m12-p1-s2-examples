@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% block content %}
+	<h3>Items</h3>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NOM</th>
+			<th>UNITATS</th>
+			<th>SUPERMERCAT</th>
+		</tr>
+
+		{% for (item, store) in items_with_stores %}
+		<tr>
+			<td><a href="/items/read/{{ item.id }}">{{ item.id }}</a></td>
+			<td><a href="/items/read/{{ item.id }}">{{ item.nom }}</a></td>
+			<td><a href="/items/read/{{ item.id }}">{{ item.unitats }}</a></td>
+			<td><a href="/items/read/{{ item.id }}">{{ store.nom }}</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	<a href="/items/create">Crear un nou item</a>
+{% endblock %}

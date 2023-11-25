@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block content %}
+   <h3>Item {{ item.id }}</h3>
+   <a href="/items/update/{{ item.id }}">Modificar item</a>
+   <br />
+   <a href="/items/delete/{{ item.id }}">Esborrar item</a>
+   <ul>
+      <li>Nom: {{ item.nom }}</li>
+      <li>Unitats: {{ item.unitats }}</li>
+      <li>Supermercat: {{ store.nom }} </li>
+   </ul>
+   <a href="/items/list">&#x3c;&#x3c; Tornar al llistat d'items</a>
+{% endblock %}
